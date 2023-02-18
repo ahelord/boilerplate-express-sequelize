@@ -1,5 +1,7 @@
 const express = require('express');
-const categoriesController = require('../../controllers/categories.controller');
+const CategoriesController = require('../../controllers/categories.controller');
+
+const categoriesController = new CategoriesController();
 const router = express.Router();
 
 /**
@@ -19,6 +21,6 @@ const router = express.Router();
  */
 router
 	.route('/')
-	.get( categoriesController.findAll);
+	.get(categoriesController.getCategories);
 
 module.exports = router;

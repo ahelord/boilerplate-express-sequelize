@@ -1,14 +1,25 @@
-const Category = require('../models').category;
 const httpStatus = require('http-status');
+const {formatError} = require('../utils/format-error.util');
+const CategoriesInteractor = require('../interactors/categories.interactor');
 
-exports.findAll = async (req, res, next) => {
-	try {
-		const categories = await Category.findAll({
-			attributes: ['label', 'identifier']
-		});
-		res.json(categories);
-	} catch (error) {
-		console.log(error);
-		next(httpStatus[httpStatus.INTERNAL_SERVER_ERROR]);
+class CategoriesController {
+	constructor() {
+
+
 	}
-};
+
+	async getCategories(req, res, next) {
+		try{
+			const interactor = new CategoriesInteractor();
+			const response = await interactor.findCategories();
+			res.json(response);
+		}catch (error) {
+			console.error(error);
+			res.status(httpStatus.BAD_REQUEST).json({message:httpStatus[httpStatus.BAD_REQUEST]});
+			next(formatError(httpStatus[httpStatus.BAD_REQUEST],error,req));
+		}
+	}
+}
+
+module.exports = CategoriesController;
+
