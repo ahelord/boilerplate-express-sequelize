@@ -27,7 +27,7 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "husky": "^4.3.8",
+    "husky": "^8.0.3",
     "nodemon": "^2.0.20",
     "sequelize-cli": "~6.2.0"
   }
