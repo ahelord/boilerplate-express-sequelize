@@ -34,4 +34,21 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+// Synchronize all models
+// Synchronize all models
+async function syncModels() {
+	try {
+		if (env !== 'production') {
+			await sequelize.sync({ alter: true });
+			console.log("All models were synchronized successfully.");
+		} else {
+			console.log("Skipping model synchronization in production environment");
+		}
+	} catch (error) {
+		console.error("Unable to sync models:", error);
+	}
+}
+// Call the syncModels function
+syncModels();
+
 module.exports = db;
