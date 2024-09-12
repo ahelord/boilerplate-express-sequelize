@@ -40,12 +40,12 @@ async function syncModels() {
 	try {
 		if (env !== 'production') {
 			await sequelize.sync({ alter: true });
-			console.log("All models were synchronized successfully.");
+			console.log('All models were synchronized successfully.');
 		} else {
-			console.log("Skipping model synchronization in production environment");
+			console.log('Skipping model synchronization in production environment');
 		}
 	} catch (error) {
-		console.error("Unable to sync models:", error);
+		console.error('Unable to sync models:', error);
 	}
 }
 // Call the syncModels function
